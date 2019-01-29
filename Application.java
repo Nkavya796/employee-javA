@@ -1,4 +1,6 @@
 import javax.swing.JLabel;
+
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import java.awt.Component;
@@ -7,11 +9,12 @@ import java.awt.FlowLayout;
 //import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class Application extends JFrame {
-	JLabel lblid,lblname;//lbldepartment,lbldesignation,lblemaidid;
-	JTextField txtname,txtid;//txtemailid;
-	JButton btnsubmit,btnCancel;
-	JRadioButton rdmale,rdfemale;
+public class Application extends JFrame implements ActionListener {
+	JLabel lblid, lblname,lblemailid,lblsex,lblphno;// lbldepartment,lbldesignation;
+	JTextField txtname, txtid,txtemailid,txtphno;
+	JButton btnsubmit, btnCancel;
+	JRadioButton rdmale, rdfemale;
+
 	Application(){
 		JLabel lblid=new JLabel("id");
 		lblid.setText("id");
@@ -34,14 +37,14 @@ public class Application extends JFrame {
 		JLabel lbldateofmarriage=new JLabel("dateofmarriage");
 		lbldateofmarriage.setText("dateofmarriage");
 		*/
-	JTextField txtid=new JTextField(10);
-	JTextField txtname=new JTextField(10);
+	 txtid=new JTextField(10);
+	 txtname=new JTextField(10);
 /*	JTextField txtdepartment=new JTextField(10);
 	JTextField txtdesignation=new JTextField(10);
 	JTextField txtdateofjoining=new JTextField(10);
 	JTextField txtdateofbirth=new JTextField(10);*/
-	JTextField txtemailid=new JTextField(10);
-	JTextField txtphonenumber=new JTextField(10);
+	txtemailid=new JTextField(10);
+    txtphno=new JTextField(10);
 	/*JTextField txtmartialstatus=new JTextField(10);
 	JTextField txtdateofmarriage=new JTextField(10);*/
 		
@@ -71,8 +74,8 @@ public class Application extends JFrame {
 		add(txtdateofbirth);*/
 		add(lblemailid);
 		add(txtemailid);
-		add(txtphonenumber);
-		add(txtphonenumber);
+		add(lblphno);
+		add(txtphno);
 		/*add(lblmartialstatus);
 		add(txtmartialstatus);
 		add(lbldateofmarriage);
@@ -81,21 +84,74 @@ public class Application extends JFrame {
 		add(rdfemale);
 		add(btnsubmit);
 		add(btncancel);
-		
-		
-		
-		
+	
 		setLayout(new FlowLayout());
 		setSize(400,400);
 		setTitle("Application");
 		setVisible(true);
-		
 		}
-	
-	public static void main(String[] args){
-		Application obj=new Application();
-
+	public void addComponent()
+	{
+		setLayout(null);
+		 
+        lblid.setBounds(280, 20, 100, 20);
+        add(lblid);
+         txtid.setBounds(370, 20, 150, 20);
+        add(txtid);
+        
+        
+		lblname.setBounds(10, 20, 100, 20);
+        add(lblname);
+        txtid.setBounds(120, 20, 150, 20);
+        add(txtname);
+        
+        lblemailid.setBounds(10,80, 100,20);
+        add(lblemailid);
+        txtemailid.setBounds(120, 80, 150, 20);
+        add(txtemailid);
+        
+        lblphno.setBounds(280, 20, 100, 20);
+        add(lblphno);
+         txtphno.setBounds(370, 20, 150, 20);
+        add(txtphno);
+        
+        lblsex.setBounds(10, 50, 50, 20);
+       add(lblsex);
+        
+        rdmale.setBounds(120, 50, 70, 20);
+        add(rdmale);
+        
+        rdfemale.setBounds(200, 50, 100, 20);
+        add(rdfemale);
+        
+        btnsubmit.setBounds(300,500,100,25);
+        add(btnsubmit);
+        
+        btnCancel.setBounds(410,500,100,25);
+        add(btnCancel);
+        
+        setResizable(false);
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String msg="";
+		String cmd=	e.getActionCommand();
+		System.out.println(cmd);
+		if(cmd=="Submit")
+				msg="welcome to "+txtname.getText();
+		else if(cmd=="Cancel")
+		{
+			msg="you clicked cancel button";
+			txtname.setText("");
+		}
+		
+		lblname.setText(msg);
+	}
+
+public static void main(String[] args){
+		Application obj=new Application();
+		obj.addComponent();
 }
-	
+	}
